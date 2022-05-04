@@ -7,7 +7,7 @@
 <!ELEMENT description (#PCDATA)>
 <!ELEMENT discipline (#PCDATA)>
 <!ATTLIST discipline
-	id ID #REQUIRED>
+	id ID #REQUIRED> 
 <!ELEMENT division (#PCDATA)>
 <!ATTLIST division
 	id ID #REQUIRED>

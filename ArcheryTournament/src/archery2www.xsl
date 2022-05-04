@@ -18,6 +18,7 @@
 				
 				<hr/>
 				<hr/>
+				
 				<h2><a name="disciplines">Disciplines</a></h2>
 				<ul>
 					<xsl:for-each select="/archery_tournament/discipline">

@@ -21,7 +21,6 @@
 	id ID #REQUIRED
 	employee1-id IDREF #REQUIRED
 	employee2-id IDREF #IMPLIED>
-<!ELEMENT description (#PCDATA)>
 <!ELEMENT registration (participant)>
 <!ATTLIST registration
 	id ID #REQUIRED>

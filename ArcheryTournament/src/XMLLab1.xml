@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE archery_tournament SYSTEM "XMLLab1.dtd">
+
 <archery_tournament id="T1" name="WFAC2022">
 	<description>World Field Archery Championship 2022</description>
 	

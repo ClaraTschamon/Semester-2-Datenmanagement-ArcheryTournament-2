@@ -16,7 +16,7 @@
 					<li><a href="#divisions">Divisions</a></li>
 					<li><a href="#part.countr">Participating Countries</a></li>
 					<li><a href="#groups">Groups</a></li>
-					<li><a href="#matches">Matches</a></li>
+					<li><a href="#matches">Scorecards</a></li>
 				</ol>
 				
 				<hr/>
@@ -40,12 +40,19 @@
         		<hr/>
        		
         		<h2><a name="part.countr">Participating Countries</a></h2>
-        		<!-- jedes Country sollte nur einmal vorkommen in der Liste! siehe Notizen -->
+        		<!-- jedes Country sollte nur einmal vorkommen in der Liste!?? -->
         		<ul>
         			<xsl:for-each select="/archery_tournament/registration/participant/state">
         				<li><xsl:value-of select="/."/></li>
         			</xsl:for-each>
         		</ul>
+        		
+        		<!-- 
+        		<ul> in oxygen würde es wahrscheinlich funktionieren
+        			<xsl:for-each-group select="/archery_tournament/registration/participant/state" group-by=".">
+        				<li><xsl:value-of select="."/></li>
+        			</xsl:for-each-group>
+        		</ul> -->
         		
         		<hr/>
         		
@@ -53,37 +60,39 @@
         			<xsl:for-each select="/archery_tournament/group">
         				<xsl:for-each select="subgroup">
         					<h4><xsl:value-of select="@sub-id"/></h4>
-       							<xsl:for-each select="member"> 	
-       							<p>					
-       								<xsl:value-of select="id(@participant-id)/lastname"/>
-       								<xsl:value-of select="id(@participant-id)/firstname"/>
-       								<br/>
-       							</p>	
+       							<xsl:for-each select="member"> 
+       								<xsl:sort select="id(@participant-id)/lastname" order="ascending"/>		
+       									<p xml:space="preserve">					
+       										<xsl:value-of select="id(@participant-id)/lastname"/>
+       										<xsl:value-of select="id(@participant-id)/firstname"/>
+       										<br/>
+       									</p>	
        							</xsl:for-each>
         				</xsl:for-each>
         			</xsl:for-each>
         		
         		<hr/>
         		
-       <!--  		<h2><a name="matches">Matches</a></h2>
-        		<p xml:space="preserve"> 
-        			<xsl:for-each select="/archery_tournament/match//*">
-        				Match: <xsl:value-of select="@match-id"/><br/> -->
-        				<!-- Scorecard für jeden einzelnen Participant machen -->
-       <!--  				<xsl:for-each-group select="participant-id"/>
-        					<table border="0px" cellpadding="0px" cellspacing="0px">
-        						<tr>
-        							<th><strong>target#</strong></th>
-        							<th><strong>score</strong></th>
-        						</tr>
-        						<tr>
-        							<th><strong><xsl:value-of select="target/@target-id"/></strong></th>
-        							<th><xsl:value-of select="score"/></th>
-        						</tr>
-        					</table>
-        			</xsl:for-each>
-        		</p>--> 
-       	
+      	  		<h2><a name="scorecards">Scorecards</a></h2> 	
+					<xsl:for-each select="//registration/participant">
+      		  			<h4 xml:space="preserve">Scorecard of
+	      	  				<xsl:value-of select="lastname"/>	
+	     					<xsl:value-of select="firstname"/>
+		     			 </h4>	
+		     			 <xsl:variable name="participant-id" select="@id"/>
+		     			 <table>
+		     			 	<xsl:for-each select="//match">
+		     			 		<tr>
+		     			 			<xsl:for-each select="target">
+		     			 				<td><xsl:value-of select="score[@participant-id = $participant-id]"/></td>
+		     			 			</xsl:for-each>
+		     			 		</tr>
+		     			 	</xsl:for-each>
+		     			 </table>
+		     		</xsl:for-each>				
+ 		
+        		<br/>
+      			<hr/>
         		<p><a href="#top">back to top</a></p>
 			</body>
 		</html>

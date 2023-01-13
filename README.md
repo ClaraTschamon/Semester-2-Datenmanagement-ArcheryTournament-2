@@ -1,5 +1,5 @@
 # ArcheryTournament
-## Lehrveranstaltung: Datenmanagement
+## Lehrveranstaltung: Datenmanagement and der FH Vorarlberg im 3. Semester des Studiengangs Informatik-Information and Software Engineering Vollzeit
 ### Lehrender: Dipl.-Ing. Dr. Gerhard Schwärzler<br/>
 ### Teammitglieder:
 - Pleschberger Mark,
